@@ -10,6 +10,3 @@ Chaque visiteur a son propre carnet : les données sont enregistrées dans le na
 - **Exporter** crée un fichier `.json` de sauvegarde ; **Importer** le recharge (sur un autre appareil, par exemple).
 - Vider les données du navigateur efface le carnet : exportez régulièrement.
 
-## Mise en ligne
-
-Site statique en un seul fichier : `index.html`. Activez GitHub Pages sur la branche `main`, dossier racine.
