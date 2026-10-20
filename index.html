@@ -326,18 +326,77 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
 .chip.pr.pop { animation: pop .55s ease-out; }
 .theme-btn svg { width: 17px; height: 17px; }
 
+.tab svg { display: none; width: 22px; height: 22px; }
+
+/* Mobile : une info à la fois, gros boutons, navigation en bas */
 @media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hide-m { display: none !important; }
+
+  header.top { padding-block: 14px 10px; }
+  .top-row { flex-wrap: nowrap; align-items: center; }
+  .brand-mark, .brand p, .io-note, .knurl { display: none; }
+  .brand h1 { font-size: 27px; }
+  .io { gap: 6px; flex-wrap: nowrap; }
+  .io .btn { padding: 10px; }
+  .io .btn span { display: none; }
+  .io .btn svg { width: 19px; height: 19px; }
+
+  nav.tabs { position: fixed; top: auto; bottom: 0; left: 0; right: 0; z-index: 15; border-bottom: 0; border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .tabs-inner { gap: 0; padding-left: max(4px, env(safe-area-inset-left, 0px)); padding-right: max(4px, env(safe-area-inset-right, 0px)); }
+  .tab { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 2px 9px; font-family: var(--f-body); font-size: 11px; font-weight: 600; letter-spacing: 0; text-transform: none; border-bottom: 0; border-top: 3px solid transparent; }
+  .tab svg { display: block; }
+  .tab[aria-selected="true"] { color: var(--accent); border-top-color: var(--accent); }
+  main { padding-block: 12px 160px; gap: 14px; }
+  .timer { bottom: calc(62px + env(safe-area-inset-bottom, 0px)); padding-bottom: 8px; }
+
+  .pad { padding: 16px; }
+  .h2 { font-size: 26px; }
+  .banner { padding: 10px 12px; }
+  .start { padding: 20px 16px; gap: 20px; }
+  .start-top { flex-direction: column; align-items: stretch; }
+  .start-top > div:first-child { flex: none; }
+  .ring { align-self: center; }
+  .start .btn.big { width: 100%; }
+  .tmpl { grid-template-columns: 1fr; }
+
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stat:nth-child(2) { border-right: 0; }
-  .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .h-item { grid-template-columns: 52px minmax(0, 1fr); }
-  .h-acts { grid-column: 1 / -1; justify-content: flex-start; }
-  .io-note { text-align: left; }
-  .exo-row { grid-template-columns: minmax(0, 1fr) auto; }
-  .exo-acts { grid-column: 1 / -1; justify-content: flex-start; }
-  .sets td, .sets th { padding-left: 5px; padding-right: 5px; }
-  .set-inp { font-size: 15px; padding: 7px 4px; }
+  .stat:nth-child(3) { border-right: 0; }
+  .ex-head { padding: 14px 10px 10px 14px; }
+  .ex-name { font-size: 22px; }
+  .last { font-size: 14px; }
+  .sets th { padding: 6px 4px; }
+  .sets td { padding: 7px 4px; }
+  .sets td:first-child, .sets th:first-child { padding-left: 14px; width: 30px; }
+  .sets td:last-child, .sets th:last-child { padding-right: 8px; }
+  .set-inp { max-width: none; font-size: 19px; padding: 10px 4px; }
   .set-unit { display: none; }
+  .check { width: 46px; height: 46px; }
+  .x { width: 30px; }
+  .ex-note { padding: 2px 14px; }
+  .ex-foot { padding: 10px 14px 14px; }
+  .ex-foot > .row { width: 100%; flex-wrap: nowrap; }
+  .ex-foot .btn { flex: 1; padding: 12px; font-size: 15px; }
+  .ex-foot .btn.ghost { border-color: var(--line); }
+  main > .btn.big { width: 100%; }
+
+  .h-item { grid-template-columns: 46px minmax(0, 1fr); gap: 12px; padding: 14px; cursor: pointer; }
+  .h-item:not(.open) .h-acts { display: none; }
+  .h-item:not(.open) .h-sum:not(.num) { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .h-acts { grid-column: 1 / -1; }
+  .h-acts .btn { flex: 1; padding: 11px; }
+
+  .exo-row { grid-template-columns: minmax(0, 1fr) auto; padding: 14px; cursor: pointer; }
+  .exo-row:not(.open):not(.editing) .exo-acts { display: none; }
+  .exo-acts { grid-column: 1 / -1; }
+  .exo-acts .btn { flex: 1; padding: 11px; }
+  .exo-sub { font-size: 14px; }
+
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile { padding: 12px 14px; }
+  .tile .v { font-size: 22px; }
+  .chart-wrap svg { min-width: 0; }
+  .tools { gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
@@ -355,7 +414,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
       </svg>
       <div>
         <h1>Carnet <span>de</span> Fonte</h1>
-        <p>Séances, charges et records, notés série par série.   evanndv :)</p>
+        <p>Séances, charges et records, notés série par série.</p>
       </div>
     </div>
     <div>
@@ -363,11 +422,11 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
         <button class="btn ghost theme-btn" id="btn-theme" type="button" aria-label="Changer de thème"></button>
         <button class="btn" id="btn-import" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 10l5 5 5-5M4 17v3h16v-3"/></svg>
-          Importer
+          <span>Importer</span>
         </button>
         <button class="btn primary" id="btn-export" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M4 17v3h16v-3"/></svg>
-          Exporter
+          <span>Exporter</span>
         </button>
         <input type="file" id="file-import" accept=".json,application/json" hidden>
       </div>
@@ -379,11 +438,11 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
 <div class="knurl" aria-hidden="true"></div>
 <nav class="tabs" aria-label="Sections">
   <div class="wrap tabs-inner" role="tablist">
-    <button class="tab" role="tab" data-tab="seance" id="tab-seance">Séance</button>
-    <button class="tab" role="tab" data-tab="exos" id="tab-exos">Mes exos</button>
-    <button class="tab" role="tab" data-tab="historique" id="tab-historique">Historique</button>
-    <button class="tab" role="tab" data-tab="progres" id="tab-progres">Progrès</button>
-    <button class="tab" role="tab" data-tab="outils" id="tab-outils">Outils</button>
+    <button class="tab" role="tab" data-tab="seance" id="tab-seance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12h20M5 8v8M8 6v12M16 6v12M19 8v8"/></svg><span>Séance</span></button>
+    <button class="tab" role="tab" data-tab="exos" id="tab-exos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span>Mes exos</span></button>
+    <button class="tab" role="tab" data-tab="historique" id="tab-historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Historique</span></button>
+    <button class="tab" role="tab" data-tab="progres" id="tab-progres"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg><span>Progrès</span></button>
+    <button class="tab" role="tab" data-tab="outils" id="tab-outils"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span>Outils</span></button>
   </div>
 </nav>
 
@@ -417,6 +476,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
 
   const fmtDur = m => m < 60 ? m + " min" : Math.floor(m / 60) + " h " + pad2(m % 60);
   const elapsedTxt = s => { const m = Math.floor((Date.now() - s.startedAt) / 60000); if (m > 360 || m < 0) return s.duration ? fmtDur(s.duration) : "Durée inconnue"; return "En cours · " + fmtDur(m); };
+  const mq = window.matchMedia ? window.matchMedia("(max-width: 560px)") : null;
+  const isM = () => !!(mq && mq.matches);
   const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
 
   /* ---------- Données d'exemple ---------- */
@@ -482,7 +543,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
   if (!data) data = sampleData();
   data.settings = Object.assign({ bar: 20, rest: 90, weeklyGoal: 3, theme: "auto" }, data.settings);
 
-  const ui = { tab: "seance", picker: false, pq: "", pg: "Tous", progEx: null, plateTarget: 100, rmKg: 80, rmReps: 5, armed: null, newExName: "", newExGroup: "Pectoraux", exQ: "", exEdit: null, exGroup: "Pectoraux", warm: {}, justPR: null };
+  const ui = { tab: "seance", picker: false, pq: "", pg: "Tous", progEx: null, plateTarget: 100, rmKg: 80, rmReps: 5, armed: null, newExName: "", newExGroup: "Pectoraux", exQ: "", exEdit: null, exGroup: "Pectoraux", warm: {}, justPR: null, exOpen: null, hOpen: null };
   try { const t = localStorage.getItem(STORE_KEY + "-tab"); if (t) ui.tab = t; } catch (e) {}
   const h = (location.hash || "").slice(1);
   if (["seance", "exos", "historique", "progres", "outils"].includes(h)) ui.tab = h;
@@ -520,7 +581,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
   function render() {
     document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.tab === ui.tab)));
     let html = "";
-    if (data.sample) html += `<div class="banner"><span><b>Données d'exemple.</b> Six semaines fictives pour voir l'application en action. Effacez-les pour commencer votre propre carnet, ou importez votre fichier.</span><button class="btn sm" data-act="clear-sample">Effacer les exemples</button></div>`;
+    if (data.sample) html += `<div class="banner"><span><b>Données d'exemple.</b><span class="hide-m"> Six semaines fictives pour voir l'application en action. Effacez-les pour commencer votre propre carnet, ou importez votre fichier.</span></span><button class="btn sm" data-act="clear-sample">Effacer les exemples</button></div>`;
     if (ui.tab === "seance") html += renderSeance();
     else if (ui.tab === "exos") html += renderExos();
     else if (ui.tab === "historique") html += renderHistory();
@@ -562,14 +623,13 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
       <input class="title-input" id="sess-title" data-sess="title" value="${esc(s.title)}" aria-label="Nom de la séance" placeholder="Nom de la séance">
       <div class="row" style="align-items:flex-end">
         <div class="field"><label for="sess-date">Date</label><input class="inp" type="date" id="sess-date" data-sess="date" value="${esc(s.date)}"></div>
-        <span class="muted" style="padding-bottom:9px">${esc(fmtDateLong(s.date))}</span>
+        <span class="muted hide-m" style="padding-bottom:9px">${esc(fmtDateLong(s.date))}</span>
       </div>
       <div class="stats" id="sess-stats">${statsHtml(s, vol, tot, done)}</div>
     </section>`;
     s.entries.forEach((en, i) => { html += entryHtml(s, en, i); });
     html += ui.picker ? pickerHtml() : `<button class="btn big" data-act="open-picker" style="justify-self:start">+ Ajouter un exercice</button>`;
-    html += `<section class="panel pad stack">
-      <div class="field"><label for="sess-notes">Notes de séance</label><textarea class="inp" id="sess-notes" data-sess="notes" placeholder="Sensations, sommeil, douleurs, réglages machine…">${esc(s.notes)}</textarea></div>
+    html += `<section class="stack">
       <div class="row spread">
         <button class="btn danger ${ui.armed === "del-active" ? "armed" : ""}" data-act="del-active">${ui.armed === "del-active" ? "Confirmer la suppression" : "Supprimer la séance"}</button>
         <button class="btn primary big" data-act="finish">Terminer la séance</button>
@@ -579,10 +639,10 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
   }
   function statsHtml(s, vol, tot, done) {
     const best = s.entries.reduce((m, en) => Math.max(m, ...en.sets.filter(filled).map(st => st.kg), 0), 0);
-    return `<div class="stat"><div class="k">Exercices</div><div class="v">${s.entries.length}</div></div>
+    return `<div class="stat hide-m"><div class="k">Exercices</div><div class="v">${s.entries.length}</div></div>
       <div class="stat"><div class="k">Séries</div><div class="v">${done}<small>/${tot}</small></div></div>
       <div class="stat"><div class="k">Tonnage</div><div class="v">${fmtInt(vol)}<small> kg</small></div></div>
-      <div class="stat"><div class="k">Charge max</div><div class="v">${fmtKg(best)}<small> kg</small></div></div>`;
+      <div class="stat hide-m"><div class="k">Charge max</div><div class="v">${fmtKg(best)}<small> kg</small></div></div>`;
   }
   function entryHtml(s, en, idx) {
     const ex = exById(en.exerciseId);
@@ -603,24 +663,24 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
       <div class="ex-head">
         <div class="meta">
           <div class="row" style="gap:8px"><h3 class="ex-name">${esc(ex.name)}</h3><span class="chip">${esc(ex.group)}</span>${hasPR ? `<span class="chip pr ${ui.justPR === en.id ? "pop" : ""}">Nouveau record</span>` : ""}</div>
-          <div class="last">${prev ? `Dernière fois (${esc(fmtDateShort(prev.session.date))}) : <b>${esc(setsSummary(prev.entry.sets))}</b>` : "Première fois sur cet exercice."}${pmax != null ? ` · Record : <b>${fmtKg(pmax)} kg</b>` : ""}${ex.goal ? ` · Objectif : <b>${fmtKg(ex.goal)} kg</b>` : ""}${prev && prev.entry.note ? `<br>Note précédente : « ${esc(prev.entry.note)} »` : ""}</div>
+          <div class="last">${prev ? `Dernière fois (${esc(fmtDateShort(prev.session.date))}) : <b>${esc(setsSummary(prev.entry.sets))}</b>` : "Première fois sur cet exercice."}${pmax != null ? `<span class="hide-m"> · Record : <b>${fmtKg(pmax)} kg</b></span>` : ""}${ex.goal ? `<span class="hide-m"> · Objectif : <b>${fmtKg(ex.goal)} kg</b></span>` : ""}</div>
         </div>
         <div class="row" style="gap:2px;flex-wrap:nowrap">
-          <button class="x" data-act="move" data-e="${en.id}" data-d="-1" aria-label="Monter" ${idx === 0 ? "disabled" : ""}>↑</button>
-          <button class="x" data-act="move" data-e="${en.id}" data-d="1" aria-label="Descendre">↓</button>
+          <button class="x hide-m" data-act="move" data-e="${en.id}" data-d="-1" aria-label="Monter" ${idx === 0 ? "disabled" : ""}>↑</button>
+          <button class="x hide-m" data-act="move" data-e="${en.id}" data-d="1" aria-label="Descendre">↓</button>
           <button class="x" data-act="del-entry" data-e="${en.id}" aria-label="Retirer l'exercice" style="${ui.armed === "en-" + en.id ? "color:var(--accent-ink);background:var(--accent)" : ""}">${ui.armed === "en-" + en.id ? "?" : "✕"}</button>
         </div>
       </div>
       <table class="sets"><thead><tr><th>Série</th><th>Charge</th><th>Reps</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table>
       ${ui.warm[en.id] ? warmHtml(en, prev) : ""}
-      <div class="ex-note"><input class="inp" id="note-${en.id}" data-note="${en.id}" value="${esc(en.note || "")}" placeholder="Note : réglage du siège, prise, sensation…" aria-label="Note sur l'exercice"></div>
+
       <div class="ex-foot">
         <div class="row" style="gap:6px">
           <button class="btn sm" data-act="add-set" data-e="${en.id}">+ Série</button>
-          <button class="btn sm ghost" data-act="add-set" data-e="${en.id}" data-inc="2.5">+ Série à +2,5 kg</button>
+          <button class="btn sm ghost hide-m" data-act="add-set" data-e="${en.id}" data-inc="2.5">+ Série à +2,5 kg</button>
           <button class="btn sm ghost" data-act="warm" data-e="${en.id}" aria-pressed="${!!ui.warm[en.id]}">Échauffement</button>
         </div>
-        <button class="btn sm ghost" data-act="go-progress" data-x="${en.exerciseId}">Voir la progression →</button>
+        <button class="btn sm ghost hide-m" data-act="go-progress" data-x="${en.exerciseId}">Voir la progression →</button>
       </div>
     </article>`;
   }
@@ -659,7 +719,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     sortedSessions().forEach(s => { if (!seen.has(s.title) && recent.length < 6) { seen.add(s.title); recent.push(s); } });
     return `<section class="panel start">
       <div class="start-top"><div><span class="eyebrow">${esc(fmtDateLong(todayISO()))}</span><h2 class="h2" style="margin-top:6px">Prêt à soulever ?</h2>
-      <p class="muted" style="margin:8px 0 0;max-width:60ch">Démarrez une séance vide, ou reprenez une séance passée : les exercices et les charges de la dernière fois sont préremplis, il ne reste qu'à valider chaque série.</p></div>${weekRing()}</div>
+      <p class="muted hide-m" style="margin:8px 0 0;max-width:60ch">Démarrez une séance vide, ou reprenez une séance passée : les exercices et les charges de la dernière fois sont préremplis, il ne reste qu'à valider chaque série.</p></div>${weekRing()}</div>
       <div><button class="btn primary big" data-act="new-session">Commencer une séance vide</button></div>
       ${recent.length ? `<div class="stack"><span class="lbl">Reprendre une séance</span><div class="tmpl">${recent.map(s => `<button data-act="repeat" data-id="${s.id}"><b>${esc(s.title)}</b><span>${s.entries.map(en => esc(exById(en.exerciseId).name)).join(" · ")}</span><span>Dernière : ${esc(fmtDateShort(s.date))}</span></button>`).join("")}</div></div>` : ""}
     </section>`;
@@ -725,7 +785,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     }
     const armed = ui.armed === "ex-" + e.id;
     const uses = s ? s.n : 0;
-    return `<div class="exo-row">
+    return `<div class="exo-row ${ui.exOpen === e.id ? "open" : ""}" data-act="exo-open" data-x="${e.id}">
       <div class="exo-main">
         <div class="exo-name">${esc(e.name)}</div>
         <div class="exo-sub">${s ? `Le ${esc(fmtDateShort(s.lastDate))} : <span class="num">${esc(setsSummary(s.lastSets))}</span>${s.best.kg > s.last.kg ? ` · record <span class="num">${fmtKg(s.best.kg)} kg</span>` : s.n > 1 ? ' · <span class="prtag" style="margin:0">RECORD</span>' : ""}` : "Jamais fait en séance"}</div>
@@ -761,7 +821,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
       const m = d.toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
       if (m !== month) { month = m; html += `<div class="month">${esc(m)}</div>`; }
       const armed = ui.armed === "h-" + s.id;
-      html += `<article class="panel h-item">
+      html += `<article class="panel h-item ${ui.hOpen === s.id ? "open" : ""}" data-act="h-open" data-id="${s.id}">
         <div class="h-date"><div class="d">${d.getDate()}</div><div class="m">${esc(d.toLocaleDateString("fr-FR", { weekday: "short" }))}</div></div>
         <div class="h-body"><div class="row" style="gap:8px"><h3 class="h-title">${esc(s.title)}</h3>${s.id === data.activeId ? '<span class="chip ok">En cours</span>' : ""}</div>
           <div class="h-sum">${s.entries.map(en => esc(exById(en.exerciseId).name) + (setsSummary(en.sets) ? ` <span class="num">${esc(setsSummary(en.sets))}</span>` : "")).join(" · ") || "Séance vide"}</div>
@@ -820,8 +880,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
       </div>
       <div class="chart-wrap">${lineChart(hist)}</div>
       <div class="legend"><span><i style="background:var(--accent)"></i>1RM estimé (Epley)</span><span><i style="background:var(--muted)"></i>Charge de la meilleure série</span></div>
-      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Date</th><th class="r">Meilleure série</th><th class="r">1RM est.</th><th class="r">Tonnage</th></tr></thead><tbody>
-        ${hist.slice().reverse().map(p => `<tr><td>${esc(fmtDateShort(p.date))}</td><td class="r num">${fmtKg(p.top.kg)} kg × ${p.top.reps}${p === best ? ' <span class="prtag">PR</span>' : ""}</td><td class="r num">${fmtKg(Math.round(p.e1 * 2) / 2)}</td><td class="r num">${fmtInt(p.vol)}</td></tr>`).join("")}
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Date</th><th class="r">Meilleure série</th><th class="r">1RM est.</th><th class="r hide-m">Tonnage</th></tr></thead><tbody>
+        ${hist.slice().reverse().map(p => `<tr><td>${esc(fmtDateShort(p.date))}</td><td class="r num">${fmtKg(p.top.kg)} kg × ${p.top.reps}${p === best ? ' <span class="prtag">PR</span>' : ""}</td><td class="r num">${fmtKg(Math.round(p.e1 * 2) / 2)}</td><td class="r num hide-m">${fmtInt(p.vol)}</td></tr>`).join("")}
       </tbody></table></div>
     </section>`;
 
@@ -830,8 +890,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     html += muscleHtml();
     const prs = used.map(id => { const hh = exerciseHistory(id); const b = hh.reduce((m, p) => p.top.kg > m.top.kg ? p : m, hh[0]); const e = hh.reduce((m, p) => p.e1 > m.e1 ? p : m, hh[0]); return { id, ex: exById(id), b, e, n: hh.length }; })
       .sort((a, b) => b.e.e1 - a.e.e1);
-    html += `<section class="panel pad stack"><h2 class="h3">Records personnels</h2><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Exercice</th><th class="r">Charge max</th><th class="r">1RM est.</th><th class="r">Séances</th><th class="r">Date</th></tr></thead><tbody>
-      ${prs.map(p => `<tr class="click" data-act="pick-prog" data-x="${p.id}"><td>${esc(p.ex.name)}</td><td class="r num">${fmtKg(p.b.top.kg)} kg × ${p.b.top.reps}</td><td class="r num">${fmtKg(Math.round(p.e.e1 * 2) / 2)} kg</td><td class="r num">${p.n}</td><td class="r">${esc(fmtDateShort(p.b.date))}</td></tr>`).join("")}
+    html += `<section class="panel pad stack"><h2 class="h3">Records personnels</h2><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Exercice</th><th class="r">Charge max</th><th class="r">1RM est.</th><th class="r hide-m">Séances</th><th class="r hide-m">Date</th></tr></thead><tbody>
+      ${prs.map(p => `<tr class="click" data-act="pick-prog" data-x="${p.id}"><td>${esc(p.ex.name)}</td><td class="r num">${fmtKg(p.b.top.kg)} kg × ${p.b.top.reps}</td><td class="r num">${fmtKg(Math.round(p.e.e1 * 2) / 2)} kg</td><td class="r num hide-m">${p.n}</td><td class="r hide-m">${esc(fmtDateShort(p.b.date))}</td></tr>`).join("")}
     </tbody></table></div></section>`;
     return html + bodyweightHtml();
   }
@@ -887,7 +947,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     return ticks;
   }
   function lineChart(points, opt = {}) {
-    const W = 680, H = opt.h || 250, L = 46, R = 16, T = 14, B = 30;
+    const W = isM() ? 400 : 680, H = opt.h || (isM() ? 220 : 250), L = 46, R = 16, T = 14, B = 30;
     const vals = points.flatMap(p => opt.single ? [p.e1] : [p.e1, p.top.kg]);
     const ticks = niceTicks(Math.min(...vals), Math.max(...vals), 4);
     const y0 = ticks[0], y1 = ticks[ticks.length - 1];
@@ -907,7 +967,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     return s + "</svg>";
   }
   function barChart(weeks) {
-    const W = 680, H = 200, L = 46, R = 10, T = 14, B = 30;
+    const W = isM() ? 400 : 680, H = 200, L = 46, R = 10, T = 14, B = 30;
     const max = Math.max(...weeks.map(w => w.vol), 1);
     const ticks = niceTicks(0, max, 3); const y1 = ticks[ticks.length - 1];
     const bw = (W - L - R) / weeks.length;
@@ -917,7 +977,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
     weeks.forEach((w, i) => {
       const bx = L + i * bw + bw * 0.18, bwid = bw * 0.64, cur = i === weeks.length - 1;
       if (w.vol > 0) s += `<rect x="${bx}" y="${y(w.vol)}" width="${bwid}" height="${H - B - y(w.vol)}" rx="3" fill="${cur ? "var(--accent)" : "var(--muted)"}" opacity="${cur ? 1 : .45}"><title>${fmtInt(w.vol)} kg · ${w.n} séance(s)</title></rect>`;
-      s += `<text x="${bx + bwid / 2}" y="${H - 9}" text-anchor="middle" font-size="11" fill="var(--muted)">${cur ? "Cette sem." : esc(w.a.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }))}</text>`;
+      s += `<text x="${bx + bwid / 2}" y="${H - 9}" text-anchor="middle" font-size="11" fill="var(--muted)">${isM() ? (cur ? "Sem." : w.a.getDate() + "/" + (w.a.getMonth() + 1)) : cur ? "Cette sem." : esc(w.a.toLocaleDateString("fr-FR", { day: "numeric", month: "short" }))}</text>`;
     });
     return s + "</svg>";
   }
@@ -1154,6 +1214,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
         if (!kg) { toast("Indiquez votre poids en kg"); break; }
         data.bodyweight = data.bodyweight.filter(b => b.date !== date); data.bodyweight.push({ date, kg }); save(); render(); toast("Pesée enregistrée"); break;
       }
+      case "exo-open": ui.exOpen = ui.exOpen === el.dataset.x ? null : el.dataset.x; render(); break;
+      case "h-open": ui.hOpen = ui.hOpen === el.dataset.id ? null : el.dataset.id; render(); break;
       case "warm": ui.warm[el.dataset.e] = !ui.warm[el.dataset.e]; render(); break;
       case "wgoal": data.settings.weeklyGoal = Number(el.dataset.g); save(); render(); break;
       case "bar": data.settings.bar = Number(el.dataset.b); save(); render(); break;
@@ -1252,6 +1314,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
 
   // Demande au navigateur de ne pas effacer les données de ce site
   try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch (e) {}
+  try { mq && mq.addEventListener("change", () => render()); } catch (e) {}
   setInterval(() => { const el = document.getElementById("sess-elapsed"); const s = active(); if (el && s && s.startedAt) el.textContent = elapsedTxt(s); }, 20000);
   render();
 })();
