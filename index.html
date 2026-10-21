@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Carnet de musculation : séances, charges, records et progression. Données stockées dans votre navigateur.">
-<meta name="theme-color" content="#C41E27">
+<meta name="theme-color" content="#E9ECEF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1115" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Fonte">
@@ -1318,6 +1322,9 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
   setInterval(() => { const el = document.getElementById("sess-elapsed"); const s = active(); if (el && s && s.startedAt) el.textContent = elapsedTxt(s); }, 20000);
   render();
 })();
+</script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 </script>
 </body>
 </html>

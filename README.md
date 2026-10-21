@@ -10,3 +10,15 @@ Chaque visiteur a son propre carnet : les données sont enregistrées dans le na
 - **Exporter** crée un fichier `.json` de sauvegarde ; **Importer** le recharge (sur un autre appareil, par exemple).
 - Vider les données du navigateur efface le carnet : exportez régulièrement.
 
+## Mise en ligne
+
+Site statique en un seul fichier : `index.html`. Activez GitHub Pages sur la branche `main`, dossier racine.
+
+## Installer comme une application
+
+Le site est une PWA : il s'installe sur l'écran d'accueil et fonctionne hors connexion.
+
+- **iPhone (Safari)** : bouton Partager → « Sur l'écran d'accueil ».
+- **Android (Chrome)** : menu ⋮ → « Installer l'application ».
+
+Après une mise à jour du site, changez `VERSION` dans `sw.js` (par ex. `fonte-v2`) pour que les téléphones récupèrent la nouvelle version.
